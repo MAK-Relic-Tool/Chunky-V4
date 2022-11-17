@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from relic.chunky.core.definitions import Version, ChunkType, ChunkFourCC
 from relic.chunky.core.serialization import MinimalChunkHeader
 
-version = Version(None) # Replace None with the version the plugin is implementing
+version = Version(4)  # Replace None with the version the plugin is implementing
 
 
 @dataclass
