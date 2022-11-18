@@ -24,7 +24,7 @@ pip install relic-tool-chunky-v4
 ### Installing from GitHub
 For more information, see [pip VCS support](https://pip.pypa.io/en/stable/topics/vcs-support/#git)
 ```
-pip install git+https://github.com/MAK-Relic-Tool/Relic-Tool-Chunky-V4
+pip install git+https://github.com/MAK-Relic-Tool/Chunky-V4
 ```
 
 ## Report A Bug / Issue
