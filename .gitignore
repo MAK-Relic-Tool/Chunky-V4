@@ -12,6 +12,7 @@ __pycache__/
 # Ignore Builds
 src/**/*.egg-info/*
 dist/*
+build/**
 
 # Ignore Docs
 ## Ignore compiled docs
