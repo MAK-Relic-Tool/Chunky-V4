@@ -1,5 +1,10 @@
+"""
+Serializers and Handlers to convert to/from Bytes and the ChunkyFS
+"""
 from dataclasses import dataclass
 from typing import BinaryIO, Dict, cast
+
+from serialization_tools.structx import Struct
 
 from relic.chunky.core.definitions import ChunkFourCC
 from relic.chunky.core.errors import ChunkNameError
@@ -12,15 +17,18 @@ from relic.chunky.core.serialization import (
     ChunkCollectionHandler,
     ChunkyFSSerializer,
 )
-from serialization_tools.structx import Struct
 
-from relic.chunky.v4.definitions import version, ChunkHeader
+from relic.chunky.v4.definitions import version as version_4p1, ChunkHeader
 
 
 @dataclass
 class ChunkHeaderSerializer(StreamSerializer[ChunkHeader]):
-    chunk_type_serializer: ChunkTypeSerializer  # Generally included
-    chunk_cc_serializer: ChunkFourCCSerializer  # Generally included
+    """
+    Serializes a ChunkHeader to/from a binary stream.
+    """
+
+    chunk_type_serializer: ChunkTypeSerializer
+    chunk_cc_serializer: ChunkFourCCSerializer
     layout: Struct
 
     def unpack(self, stream: BinaryIO) -> ChunkHeader:
@@ -97,7 +105,7 @@ _chunk_collection_handler = ChunkCollectionHandler(
 )
 
 chunky_fs_serializer = ChunkyFSSerializer(
-    version=version,
+    version=version_4p1,
     chunk_serializer=_chunk_collection_handler,
     header_serializer=_NoneHeaderSerializer(),
     # Replace with a NoneSerializer or a serializer which serializes a header
