@@ -9,7 +9,8 @@ from relic.chunky.core.serialization import (
     chunk_type_serializer,
     ChunkFourCCSerializer,
     chunk_cc_serializer,
-    ChunkCollectionHandler, ChunkyFSSerializer
+    ChunkCollectionHandler,
+    ChunkyFSSerializer,
 )
 from serialization_tools.structx import Struct
 
@@ -46,7 +47,7 @@ class ChunkHeaderSerializer(StreamSerializer[ChunkHeader]):
 chunk_header_serializer = ChunkHeaderSerializer(
     chunk_type_serializer,
     chunk_cc_serializer,
-    Struct("<3L")  # replace with proper Struct
+    Struct("<3L"),  # replace with proper Struct
 )
 
 
@@ -92,7 +93,7 @@ def _noneMeta2Header(_: Dict[str, object]) -> None:
 _chunk_collection_handler = ChunkCollectionHandler(
     header_serializer=chunk_header_serializer,
     header2meta=_chunkHeader2meta,
-    meta2header=_meta2chunkHeader
+    meta2header=_meta2chunkHeader,
 )
 
 chunky_fs_serializer = ChunkyFSSerializer(
